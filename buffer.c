@@ -36,4 +36,15 @@ void flushBufferToFile(Buffer *buffer) {
     fclose(file);
     emptyBuffer(buffer);
 }
+void writeChunkToBuffer(Buffer *buffer, Chunk *workingChunk) {
+    //buffer,file related
+    if (buffer->bufferEntries + workingChunk->chunkSize > buffer->bufferSize) {
+        flushBufferToFile(buffer);
+    }
+    for (int i = 0; i < workingChunk->chunkSize; i++) {
+        if (getBit(workingChunk, i)) {
+            addNumber(buffer, i + workingChunk->start);
+        }
+    }
+}
 

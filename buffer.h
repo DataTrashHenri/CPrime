@@ -7,6 +7,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "chunk.h"
+
 typedef struct {
     int bufferSize;
     uint64_t* buffer;
@@ -17,4 +19,5 @@ void initBuffer(Buffer *buffer, int size);
 void addNumber(Buffer *buffer, uint64_t number);
 void freeBuffer(Buffer *buffer);
 void flushBufferToFile(Buffer *buffer);
+void writeChunkToBuffer(Buffer *buffer, Chunk *chunk);
 #endif //BUFFER_H

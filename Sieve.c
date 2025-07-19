@@ -28,28 +28,17 @@ void sieve(ULL upperLimit,int bufferSize) { // Given that sqrt(upperLimit) can b
     Chunk baseChunk;
     initChunk(&baseChunk,0,chunkSize);
     calcBaseChunk(&baseChunk);
-    for (int i = 0; i < baseChunk.chunkSize; i++) {
-        if (getBit(&baseChunk, i)) {
-            addNumber(&buffer, i + baseChunk.start);
-        }
-    }
+    writeChunkToBuffer(&buffer,&baseChunk);
+
     //now sieving using base chunk
     Chunk workingChunk;
     for (ULL currentStart= chunkSize; currentStart < upperLimit; currentStart+=chunkSize) {
 
-
         initChunk(&workingChunk,currentStart,currentStart+chunkSize);
         calcChunk(&baseChunk,&workingChunk);
 
-        //buffer,file related
-        if (buffer.bufferEntries + workingChunk.chunkSize > buffer.bufferSize) {
-            flushBufferToFile(&buffer);
-        }
-        for (int i = 0; i < workingChunk.chunkSize; i++) {
-            if (getBit(&workingChunk, i)) {
-                addNumber(&buffer, i + workingChunk.start);
-            }
-        }
+        writeChunkToBuffer(&buffer,&workingChunk);
+
         //working chunk can now be cleared, because it's been written to the buffer by now
         free(workingChunk.chunkSet);
     }
