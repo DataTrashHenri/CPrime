@@ -18,29 +18,8 @@ void addNumber(Buffer *buffer, uint64_t number) {
     buffer->buffer[buffer->bufferEntries] = number;
     buffer->bufferEntries++;
 }
-bool getBitFromBitset(uint64_t *bitset, size_t x) {
-    return (bitset[x/64] & (1ULL << (x%64))) != 0;
-}
-void addNumbersFromArray(Buffer *buffer, uint64_t* numbers, size_t size, size_t offset) {
-    if (buffer->bufferEntries + size > buffer->bufferSize) {
-        flushBufferToFile(buffer);
-    }
-    size_t totalBitsInNumbers = size*sizeof(uint64_t)*8;
-    for (size_t i = 0; i < totalBitsInNumbers; i++) {
-        if (getBitFromBitset(numbers,i)) {
-            addNumber(buffer, i + offset);
-        }
-    }
-}
-
-uint64_t getAtIndex(Buffer *buffer, int x) {
-    return buffer->buffer[x];
-}
 void freeBuffer(Buffer *buffer) {
     free(buffer->buffer);
-}
-bool bufferFull(Buffer *buffer) {
-    return buffer->bufferEntries == buffer->bufferSize;
 }
 void emptyBuffer(Buffer *buffer) {
     for (int i = 0; i < buffer->bufferEntries; i++) {

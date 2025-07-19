@@ -8,4 +8,6 @@ add_executable(PrimeTest main.c
         chunk.h
         buffer.c
         buffer.h
+        Sieve.c
+        Sieve.h
 )

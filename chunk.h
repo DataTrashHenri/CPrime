@@ -14,12 +14,8 @@ typedef struct {
     uint64_t* chunkSet;
 } Chunk;
 void initChunk(Chunk* chunk,ULL start, ULL end);
-void setBit(Chunk* chunk, int x);
 void clearBit(Chunk* chunk, int x);
 bool getBit(Chunk* chunk, int x);
 void calcChunk(Chunk* baseChunk, Chunk* workingChunk);
 void calcBaseChunk(Chunk* baseChunk);
-void printChunk(Chunk* chunk);
-void sieve(ULL upperLimit,int bufferSize);
-void toFile(Chunk* chunk);
 #endif //CHUNK_H

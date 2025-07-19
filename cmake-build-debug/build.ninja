@@ -67,6 +67,18 @@ build CMakeFiles/PrimeTest.dir/buffer.c.obj: C_COMPILER__PrimeTest_unscanned_Deb
   OBJECT_DIR = CMakeFiles\PrimeTest.dir
   OBJECT_FILE_DIR = CMakeFiles\PrimeTest.dir
 
+build CMakeFiles/PrimeTest.dir/PrimeFileTest.c.obj: C_COMPILER__PrimeTest_unscanned_Debug C$:/Users/henri/CLionProjects/PrimeTest/PrimeFileTest.c || cmake_object_order_depends_target_PrimeTest
+  DEP_FILE = CMakeFiles\PrimeTest.dir\PrimeFileTest.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\PrimeTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\PrimeTest.dir
+
+build CMakeFiles/PrimeTest.dir/Sieve.c.obj: C_COMPILER__PrimeTest_unscanned_Debug C$:/Users/henri/CLionProjects/PrimeTest/Sieve.c || cmake_object_order_depends_target_PrimeTest
+  DEP_FILE = CMakeFiles\PrimeTest.dir\Sieve.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\PrimeTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\PrimeTest.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PrimeTest
@@ -75,7 +87,7 @@ build CMakeFiles/PrimeTest.dir/buffer.c.obj: C_COMPILER__PrimeTest_unscanned_Deb
 #############################################
 # Link the executable PrimeTest.exe
 
-build PrimeTest.exe: C_EXECUTABLE_LINKER__PrimeTest_Debug CMakeFiles/PrimeTest.dir/main.c.obj CMakeFiles/PrimeTest.dir/chunk.c.obj CMakeFiles/PrimeTest.dir/buffer.c.obj
+build PrimeTest.exe: C_EXECUTABLE_LINKER__PrimeTest_Debug CMakeFiles/PrimeTest.dir/main.c.obj CMakeFiles/PrimeTest.dir/chunk.c.obj CMakeFiles/PrimeTest.dir/buffer.c.obj CMakeFiles/PrimeTest.dir/PrimeFileTest.c.obj CMakeFiles/PrimeTest.dir/Sieve.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PrimeTest.dir
