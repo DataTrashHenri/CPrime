@@ -29,21 +29,19 @@ void emptyBuffer(Buffer *buffer) {
 }
 void flushBufferToFile(Buffer *buffer) {
     FILE* file = fopen("chunk.bin","ab");
-    for (int i = 0; i < buffer->bufferEntries; i++) {
-        uint64_t number = buffer->buffer[i];
-        fwrite(&number, sizeof(uint64_t), 1, file);
-    }
+    fwrite(buffer->buffer,sizeof(uint64_t),buffer->bufferEntries,file);
     fclose(file);
     emptyBuffer(buffer);
 }
 void writeChunkToBuffer(Buffer *buffer, Chunk *workingChunk) {
-    //buffer,file related
     if (buffer->bufferEntries + workingChunk->chunkSize > buffer->bufferSize) {
         flushBufferToFile(buffer);
     }
-    for (int i = 0; i < workingChunk->chunkSize; i++) {
+    uint64_t start = workingChunk->start;
+    int size = workingChunk->chunkSize;
+    for (int i = 0; i < size; i++) {
         if (getBit(workingChunk, i)) {
-            addNumber(buffer, i + workingChunk->start);
+            addNumber(buffer, i + start);
         }
     }
 }

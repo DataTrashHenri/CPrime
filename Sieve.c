@@ -23,7 +23,7 @@ void sieve(ULL upperLimit,int bufferSize) { // Given that sqrt(upperLimit) can b
     Buffer buffer;
     initBuffer(&buffer,bufferSize);
 
-    printf("Calculations start now, %.4f MB of RAM will be needed ( %llu MB for buffer )\n", 2* (chunkSize / (8.0 * 1024 * 1024)),(bufferSize*sizeof(uint64_t))/(8*1024*1024)); //2*, bc. workingChunk(dynamic)+ basechunk ( static)
+    printf("Calculations start now, %.4f MB of RAM will be needed ( %.2f MB for buffer )\n", 2* (chunkSize / (8.0 * 1024 * 1024)),((float)(bufferSize*sizeof(uint64_t)))/(8*1024*1024)); //2*, bc. workingChunk(dynamic)+ basechunk ( static)
     //prepare by calculating base chunk:
     Chunk baseChunk;
     initChunk(&baseChunk,0,chunkSize);
