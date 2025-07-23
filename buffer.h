@@ -19,5 +19,5 @@ void initBuffer(Buffer *buffer, int size);
 void addNumber(Buffer *buffer, uint64_t number);
 void freeBuffer(Buffer *buffer);
 void flushBufferToFile(Buffer *buffer);
-void writeChunkToBuffer(Buffer *buffer, Chunk *chunk);
+long writeChunkToBuffer(Buffer *buffer, Chunk *chunk);
 #endif //BUFFER_H

@@ -28,7 +28,8 @@ void sieve(ULL upperLimit,int bufferSize) { // Given that sqrt(upperLimit) can b
     Chunk baseChunk;
     initChunk(&baseChunk,0,chunkSize);
     calcBaseChunk(&baseChunk);
-    writeChunkToBuffer(&buffer,&baseChunk);
+
+    clock_t timeSpendOnWrite = writeChunkToBuffer(&buffer, &baseChunk);
 
     //now sieving using base chunk
     Chunk workingChunk;
@@ -37,7 +38,7 @@ void sieve(ULL upperLimit,int bufferSize) { // Given that sqrt(upperLimit) can b
         initChunk(&workingChunk,currentStart,currentStart+chunkSize);
         calcChunk(&baseChunk,&workingChunk);
 
-        writeChunkToBuffer(&buffer,&workingChunk);
+        timeSpendOnWrite +=writeChunkToBuffer(&buffer,&workingChunk);
 
         //working chunk can now be cleared, because it's been written to the buffer by now
         free(workingChunk.chunkSet);
@@ -50,6 +51,7 @@ void sieve(ULL upperLimit,int bufferSize) { // Given that sqrt(upperLimit) can b
     clock_t end = clock();
     double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
     printf("Time: %.6f seconds\n", time_spent);
+    printf("Time spend writing to a binaryfile: %i ms\n", timeSpendOnWrite);
 }
 
 //for debugging file-writing:

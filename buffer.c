@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 void initBuffer(Buffer *buffer, int size) {
@@ -33,9 +34,12 @@ void flushBufferToFile(Buffer *buffer) {
     fclose(file);
     emptyBuffer(buffer);
 }
-void writeChunkToBuffer(Buffer *buffer, Chunk *workingChunk) {
+long writeChunkToBuffer(Buffer *buffer, Chunk *workingChunk) {
+    clock_t timeSpendOnWrite=0;
     if (buffer->bufferEntries + workingChunk->chunkSize > buffer->bufferSize) {
+        timeSpendOnWrite = clock();
         flushBufferToFile(buffer);
+        timeSpendOnWrite = clock() - timeSpendOnWrite;
     }
     uint64_t start = workingChunk->start;
     int size = workingChunk->chunkSize;
@@ -44,5 +48,6 @@ void writeChunkToBuffer(Buffer *buffer, Chunk *workingChunk) {
             addNumber(buffer, i + start);
         }
     }
+    return timeSpendOnWrite;
 }
 
